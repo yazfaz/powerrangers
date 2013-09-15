@@ -1,3 +1,14 @@
+module Fight
+	def everyone_fights (p1,p2,p3,p4,p5)
+		puts "Everyone is fighting! It's chaos!"
+		p1.caffeine_level="0"
+		p2.caffeine_level="0"
+		p3.caffeine_level="0"
+		p4.caffeine_level="0"
+		p5.caffeine_level="0"
+	end
+end
+
 class Person
 	attr_accessor :name, :caffeine_level
 	def initialize(name, caffeine_level)
@@ -41,6 +52,8 @@ class Person
 end
 
 class PowerRanger < Person
+	include Fight 
+
 	def initialize(strength, color)
 		super(name,caffeine_level)
 		@strength=strength
@@ -69,18 +82,11 @@ class PowerRanger < Person
 		puts "Boom! #{person_hit_megazord} ran away crying from your superpower 5000 strength hit!"
 		@caffeine_level="0"
 	end
-	def fight (p1,p2,pr1,en1,en2)
-		puts "Everyone is fighting! It's chaos!"
-		p1.caffeine_level="0"
-		p2.caffeine_level="0"
-		pr1.caffeine_level="0"
-		# pr2.caffeine_level="0"
-		en1.caffeine_level="0"
-		en2.caffeine_level="0"	
-	end
 end
 
 class EvilNinja < Person 
+	include Fight
+
 	def initialize (strength, evilness)
 		super(name, caffeine_level)
 		@strength=strength
@@ -103,17 +109,9 @@ class EvilNinja < Person
 		# puts "Evilness! #{name} caused so much mayhem and now #{person_name.name} is so tired their energy level is #{@caffeine_level.caffeine_level}"
 		puts "So much evil mayhem! Now #{person_name.name} is so tired their energy level is #{person_name.caffeine_level}!"
 	end
-	
-	def fight (p1,p2,pr1,pr2,en1)
-		puts "Everyone is fighting! It's chaos!"
-		p1.caffeine_level="0"
-		p2.caffeine_level="0"
-		pr1.caffeine_level="0"
-		pr2.caffeine_level="0"
-		en1.caffeine_level="0"
-		# en2.caffeine_level="0"	
-	end
 end
+
+
 
 person1=Person.new("Yaz","0")
 p2=Person.new("Kristine", "5")
@@ -141,8 +139,8 @@ en2=EvilNinja.new("3", "not that evil")
 # evil.punch("bob")
 # evil.cause_mayhem(p)
 # Person.caffeine_leve
-en2.fight(person1,p2,pr1,pr2,en1)
+en2.everyone_fights(person1,p2,pr1,pr2,en1)
 p2.print_caffeine_level
 
-pr1.fight(person1,p2,pr2,en1,en2)
+pr1.everyone_fights(person1,p2,pr2,en1,en2)
 pr1.print_caffeine_level
